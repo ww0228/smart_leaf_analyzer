@@ -1,0 +1,62 @@
+{
+  "model_name": "LogisticRegression",
+  "model_file": "final_tipburn_pipeline.joblib",
+  "model_version": "1.0",
+  "exported_at_utc": "2026-08-10T11:40:24.879772+00:00",
+  "prediction_unit": "leaf",
+  "grouping_unit": "plant",
+  "group_column": "Sample_Group_ID",
+  "feature_order": [
+    "REIP_nm",
+    "NDRE",
+    "Red_Edge_Slope",
+    "NDVI",
+    "NIR_Mean_SmoothedRaw"
+  ],
+  "feature_count": 5,
+  "class_mapping": {
+    "Healthy": 0,
+    "Tipburn": 1
+  },
+  "positive_class": 1,
+  "positive_class_name": "Tipburn",
+  "decision_threshold": 0.5,
+  "model_parameters": {
+    "clf__C": 10,
+    "max_iter": 50,
+    "random_state": 42
+  },
+  "training_scope": {
+    "partition": "train_val",
+    "description": "Fitted using only the fixed 80% development partition. The final 20% holdout was not used for fitting or retuning.",
+    "development_leaf_count": 288,
+    "development_plant_count": 96
+  },
+  "holdout_scope": {
+    "partition": "final_test",
+    "holdout_leaf_count": 72,
+    "holdout_plant_count": 24
+  },
+  "preprocessing": {
+    "scaler": "StandardScaler",
+    "savgol_window": 11,
+    "savgol_polyorder": 2,
+    "normalization": "Row-wise min-max normalization after Savitzky-Golay smoothing",
+    "ndre_ndvi_source": "Smoothed reflectance with wavelength interpolation"
+  },
+  "validated_holdout_results": {
+    "macro_f1": 0.8469565217391304,
+    "roc_auc": 0.9506172839506172,
+    "true_negative": 32,
+    "false_positive": 4,
+    "false_negative": 7,
+    "true_positive": 29
+  },
+  "software_versions": {
+    "python": "3.13.0",
+    "numpy": "2.4.6",
+    "pandas": "3.0.3",
+    "scikit_learn": "1.9.0",
+    "joblib": "1.5.3"
+  }
+}
